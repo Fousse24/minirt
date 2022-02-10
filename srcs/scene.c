@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_trgb.c                                       :+:      :+:    :+:   */
+/*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 20:08:14 by fousse            #+#    #+#             */
-/*   Updated: 2022/02/07 16:58:28 by sfournie         ###   ########.fr       */
+/*   Created: 2021/12/22 19:17:29 by fousse            #+#    #+#             */
+/*   Updated: 2022/02/07 17:56:08 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minirt.h"
 
-t_rgb	new_rgb(int r, int g, int b)
+void	init_scene(t_scene *scene)
 {
-	t_rgb	rgb;
-
-	rgb.r = r;
-	rgb.g = g;
-	rgb.b = b;
-	return (rgb);
+	scene->camera = NULL;
+	scene->light_amb = NULL;
+	scene->lights = NULL;
+	scene->shapes = NULL;
+	scene->selection = NULL;
 }
 
-int	get_t(int trgb)
+t_scene	*get_scene(void)
 {
-	return ((trgb >> 24) & 0xFF);
-}
+	static t_scene	*scene;
 
-int	get_r(int trgb)
-{
-	return ((trgb >> 16) & 0xFF);
-}
-
-int	get_g(int trgb)
-{
-	return ((trgb >> 8) & 0xFF);
-}
-
-int	get_b(int trgb)
-{
-	return (trgb & 0xFF);
+	if (!scene)
+	{
+		scene = (t_scene *)ft_calloc(1, sizeof(t_scene));
+		if (!scene)
+			return (NULL);
+		init_scene(scene);
+	}
+	return (scene);
 }

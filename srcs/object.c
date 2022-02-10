@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_trgb.c                                       :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 20:08:14 by fousse            #+#    #+#             */
-/*   Updated: 2022/02/07 16:58:28 by sfournie         ###   ########.fr       */
+/*   Created: 2021/12/22 19:17:29 by fousse            #+#    #+#             */
+/*   Updated: 2022/02/10 13:45:37 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minirt.h"
 
-t_rgb	new_rgb(int r, int g, int b)
+void	init_obj(t_obj *obj)
 {
-	t_rgb	rgb;
-
-	rgb.r = r;
-	rgb.g = g;
-	rgb.b = b;
-	return (rgb);
+	obj->enabled = FALSE;
+	obj->orient = new_vec3(0, 0, 0);
+	obj->pos = new_vec3(0, 0, 0);
+	obj->type = NONE;
 }
 
-int	get_t(int trgb)
+t_obj	*new_obj(void)
 {
-	return ((trgb >> 24) & 0xFF);
-}
+	t_obj	*obj;
 
-int	get_r(int trgb)
-{
-	return ((trgb >> 16) & 0xFF);
-}
-
-int	get_g(int trgb)
-{
-	return ((trgb >> 8) & 0xFF);
-}
-
-int	get_b(int trgb)
-{
-	return (trgb & 0xFF);
+	obj = (t_obj *)ft_calloc(1, sizeof(t_obj));
+	init_obj(obj);
+	return (obj);
 }

@@ -6,11 +6,11 @@
 /*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 19:57:26 by fousse            #+#    #+#             */
-/*   Updated: 2022/01/30 20:05:17 by sfournie         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:59:47 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"cub3d.h"
+#include	"minirt.h"
 
 int	color_rgb_to_int(t_rgb rgb)
 {
@@ -36,8 +36,6 @@ int	color_shift_int(int base, int shift, double force)
 	t_rgb	base_rgb;
 	t_rgb	shift_rgb;
 
-	if (base == TRANS)
-		return (base);
 	base_rgb = color_int_to_rgb(base);
 	shift_rgb = color_int_to_rgb(shift);
 	rgb = color_shift_rgb(base_rgb, shift_rgb, force);
@@ -46,5 +44,10 @@ int	color_shift_int(int base, int shift, double force)
 
 t_rgb	color_shift_rgb(t_rgb base, t_rgb shift, double force)
 {
-	return (base);
+	t_rgb	new;
+
+	new.r = base.r + ((shift.r - base.r) * force);
+	new.g = base.g + ((shift.g - base.g) * force);
+	new.b = base.b + ((shift.b - base.b) * force);
+	return (new);
 }

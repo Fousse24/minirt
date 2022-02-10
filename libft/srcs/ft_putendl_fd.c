@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 19:17:29 by fousse            #+#    #+#             */
-/*   Updated: 2022/02/07 14:09:17 by sfournie         ###   ########.fr       */
+/*   Created: 2021/05/17 11:05:06 by sfournie          #+#    #+#             */
+/*   Updated: 2021/05/17 11:39:01 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minirt.h"
+#include	"libft.h"
 
-t_mlx	*get_mlx(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	static t_mlx	mlx;
-
-	if (mlx.init != 1)
+	if (fd >= 0 && fd <= 2)
 	{
-		mlx.mlx = mlx_init();
-		mlx.win = mlx_new_window(mlx.mlx, WIN_W, WIN_H, "Cub3D");
-		new_img(mlx.mlx, &mlx.img, WIN_W, WIN_H);
-		mlx.init = 1;
+		ft_putstr_fd(s, fd);
+		write(fd, "\n", 1);
 	}
-	return (&mlx);
 }

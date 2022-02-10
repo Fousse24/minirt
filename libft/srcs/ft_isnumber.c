@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 19:17:29 by fousse            #+#    #+#             */
-/*   Updated: 2022/02/07 14:09:17 by sfournie         ###   ########.fr       */
+/*   Created: 2021/08/16 14:47:56 by sfournie          #+#    #+#             */
+/*   Updated: 2021/09/03 20:34:06 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minirt.h"
+#include	"libft.h"
 
-t_mlx	*get_mlx(void)
+int	ft_isnumber(char *s)
 {
-	static t_mlx	mlx;
+	int	i;
 
-	if (mlx.init != 1)
+	if (s == NULL)
+		return (0);
+	i = -1;
+	if (s[0] == '-' || s[0] == '+')
+		i++;
+	while (s[++i])
 	{
-		mlx.mlx = mlx_init();
-		mlx.win = mlx_new_window(mlx.mlx, WIN_W, WIN_H, "Cub3D");
-		new_img(mlx.mlx, &mlx.img, WIN_W, WIN_H);
-		mlx.init = 1;
+		if (!ft_isdigit(s[i]))
+			return (0);
 	}
-	return (&mlx);
+	return (1);
 }

@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   ft_dlst_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 19:17:29 by fousse            #+#    #+#             */
-/*   Updated: 2022/02/07 14:09:17 by sfournie         ###   ########.fr       */
+/*   Created: 2021/11/24 16:25:11 by sfournie          #+#    #+#             */
+/*   Updated: 2021/11/24 16:25:15 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minirt.h"
+#include	"dlist.h"
 
-t_mlx	*get_mlx(void)
+// Return the amount of nodes in $dlst
+int	ft_dlst_size(t_dlst *dlst)
 {
-	static t_mlx	mlx;
+	size_t	size;
+	t_dlst	*temp;
 
-	if (mlx.init != 1)
+	size = 0;
+	temp = dlst;
+	while (temp != 0)
 	{
-		mlx.mlx = mlx_init();
-		mlx.win = mlx_new_window(mlx.mlx, WIN_W, WIN_H, "Cub3D");
-		new_img(mlx.mlx, &mlx.img, WIN_W, WIN_H);
-		mlx.init = 1;
+		temp = temp->next;
+		size++;
 	}
-	return (&mlx);
+	return (size);
 }

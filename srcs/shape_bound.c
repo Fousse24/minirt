@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_trgb.c                                       :+:      :+:    :+:   */
+/*   shape_bound.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 20:08:14 by fousse            #+#    #+#             */
-/*   Updated: 2022/02/07 16:58:28 by sfournie         ###   ########.fr       */
+/*   Created: 2021/12/22 19:17:29 by fousse            #+#    #+#             */
+/*   Updated: 2022/02/10 14:57:37 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minirt.h"
 
-t_rgb	new_rgb(int r, int g, int b)
+int	is_in_bound(t_shape *shape, t_vec3 pos)
 {
-	t_rgb	rgb;
-
-	rgb.r = r;
-	rgb.g = g;
-	rgb.b = b;
-	return (rgb);
+	if (shape->type == SPHERE)
+		return (is_in_sphere(shape, pos));
+	return (FALSE);
 }
 
-int	get_t(int trgb)
+int	is_in_sphere(t_shape *shape, t_vec3 pos)
 {
-	return ((trgb >> 24) & 0xFF);
-}
+	float	rad;
+	t_vec3	center;
 
-int	get_r(int trgb)
-{
-	return ((trgb >> 16) & 0xFF);
-}
-
-int	get_g(int trgb)
-{
-	return ((trgb >> 8) & 0xFF);
-}
-
-int	get_b(int trgb)
-{
-	return (trgb & 0xFF);
+	rad = shape->radius;
+	center = shape->obj->pos;
+	if (vec3_len_nosqr(vec3_sub(pos, center)) <= powf(rad, 2))
+	{
+		return (TRUE);
+	}
+	return (FALSE);
 }
