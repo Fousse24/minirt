@@ -6,7 +6,7 @@
 /*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 09:06:09 by gcollet           #+#    #+#             */
-/*   Updated: 2022/02/10 15:44:01 by sfournie         ###   ########.fr       */
+/*   Updated: 2022/02/11 10:22:30 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int	update(t_mlx *mlx)
 {
 	raytracing(new_vec3(0, 0, 0), *get_scene(), mlx);
-	
 	return (0);
 }
 
@@ -27,10 +26,14 @@ int	main(int argc, char **argv)
 
 	mlx = get_mlx();
 	scene = get_scene();
-	scene->light_amb = new_light(AMBIANT, 0x0000FF, 0.2, 1000);
-	ft_dlst_add_front(&scene->shapes, ft_dlst_new_node(new_sphere(new_vec3(200, 100, 100), 100, 0xFFFFFF)));
-	ft_dlst_add_front(&scene->lights, ft_dlst_new_node(new_light(DIFFUSE, 0xFFFFFF, 1, 200)));
-	((t_light *)scene->lights->content)->obj->pos = new_vec3(50, 100, 100);
+	scene->light_amb = new_light(AMBIANT, 0xFFFFFF, 0.2, 1000);
+	ft_dlst_add_front(&scene->shapes, ft_dlst_new_node(new_sphere(new_vec3(0, 0, 300), 100, 0)));
+	ft_dlst_add_front(&scene->lights, ft_dlst_new_node(new_light(DIFFUSE, 0xFFFFFF, 1, 420)));
+	((t_light *)scene->lights->content)->obj->pos = new_vec3(200, 0, 300);
+	ft_dlst_add_front(&scene->lights, ft_dlst_new_node(new_light(DIFFUSE, 0x0000FF, 1, 420)));
+	((t_light *)scene->lights->content)->obj->pos = new_vec3(-200, 0, 300);
+	ft_dlst_add_front(&scene->lights, ft_dlst_new_node(new_light(DIFFUSE, 0xFF0000, 1, 420)));
+	((t_light *)scene->lights->content)->obj->pos = new_vec3(0, 200, 300);
 	//ft_dlst_add_front(&scene->shapes, ft_dlst_new_node(new_sphere(new_vec3(150, 120, 50), 30, 0xFF00FF)));
 	//ft_dlst_add_front(&scene->shapes, ft_dlst_new_node(new_sphere(new_vec3(130, 170, 15), 50, 0x00FFFF)));
 	//ft_dlst_add_front(&scene->shapes, ft_dlst_new_node(new_sphere(new_vec3(350, 350, 50), 100, 0xFFFF00)));
@@ -40,13 +43,6 @@ int	main(int argc, char **argv)
 	mlx_hook(mlx->win, 17, 0, quit_handler, NULL);
 	mlx_mouse_hook(mlx->win, mouse_handler, NULL);
 	mlx_loop_hook (mlx->mlx, update, mlx);
-
-	// t_vec3	vec1 = new_vec3(10, 8, 6);
-	// t_vec3	vec2 = new_vec3(15, 12, 1);
-	// t_vec3	sub = vec3_sub(vec2, vec1);
-	// t_vec3	norm = vec3_normalize(sub);
-
-	// printf("sub %f %f %f norm %f %f %f", sub.x, sub.y, sub.z , norm.x, norm.y, norm.z);
 	mlx_loop (mlx->mlx);
 	return (0);
 }

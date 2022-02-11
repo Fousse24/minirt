@@ -6,7 +6,7 @@
 /*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 19:41:15 by fousse            #+#    #+#             */
-/*   Updated: 2022/02/10 13:45:37 by sfournie         ###   ########.fr       */
+/*   Updated: 2022/02/10 18:29:23 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	mouse_handler(int keycode, int x, int y)
 		}
 		//ft_dlst_add_front(&get_scene()->shapes, ft_dlst_new_node(new_sphere(new_vec3(x, y, 100), 50, 0xFFFFFF)));
 	}
+	get_scene()->selection = (t_shape *)get_scene()->shapes->content;
 	if (keycode == 4 && get_scene()->selection)
 		get_scene()->selection->obj->pos.z += 5;
 	if (keycode == 5 && get_scene()->selection)

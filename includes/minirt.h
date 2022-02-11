@@ -6,7 +6,7 @@
 /*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:07:49 by sfournie          #+#    #+#             */
-/*   Updated: 2022/02/10 16:46:34 by sfournie         ###   ########.fr       */
+/*   Updated: 2022/02/10 18:53:54 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ float	vec3_len(t_vec3 vect);
 float	vec3_len_nosqr(t_vec3 vect);
 t_vec3	vec3_add(t_vec3 vect1, t_vec3 vect2);
 t_vec3	vec3_sub(t_vec3 vect1, t_vec3 vect2);
+t_vec3	vec3_prod(t_vec3 vect1, t_vec3 vect2);
+t_vec3	vec3_prod_n(t_vec3 vect1, double n);
+float	vec3_dot_product(t_vec3 vec1, t_vec3 vec2);
 
 /* Raytracing */
 int		raytracing(t_vec3 ori, t_scene scene, t_mlx	*mlx);
@@ -90,6 +93,11 @@ void	*new_plane();
 int		is_in_bound(t_shape *shape, t_vec3 pos);
 int		is_in_sphere(t_shape *shape, t_vec3 pos);
 int		is_in_light(t_light *light, t_vec3 pos);
+
+int		is_intersecting(t_ray3 ray, t_shape shape, double *dist);
+int		intersect_sphere(t_ray3 ray, t_shape shape, double *dist);
+int	intersect_light(t_ray3 ray, t_light light, double *dist);
+
 
 /* Color */
 int		color_valid_rgb(t_rgb rgb);
@@ -116,5 +124,6 @@ float	math_pytha3(float x, float y, float z);
 
 
 int    solve_quadra(double a, double b, double c, double *t0, double *t1);
+int get_roots(double *t0, double *t1, t_ray3 r, t_shape s);
 
 #endif
