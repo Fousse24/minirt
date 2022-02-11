@@ -6,7 +6,7 @@
 /*   By: sfournie <sfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 09:06:09 by gcollet           #+#    #+#             */
-/*   Updated: 2022/02/11 10:22:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2022/02/11 13:50:56 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	ft_dlst_add_front(&scene->lights, ft_dlst_new_node(new_light(DIFFUSE, 0x0000FF, 1, 420)));
 	((t_light *)scene->lights->content)->obj->pos = new_vec3(-200, 0, 300);
 	ft_dlst_add_front(&scene->lights, ft_dlst_new_node(new_light(DIFFUSE, 0xFF0000, 1, 420)));
-	((t_light *)scene->lights->content)->obj->pos = new_vec3(0, 200, 300);
+	((t_light *)scene->lights->content)->obj->pos = new_vec3(0, 100, 150);
 	//ft_dlst_add_front(&scene->shapes, ft_dlst_new_node(new_sphere(new_vec3(150, 120, 50), 30, 0xFF00FF)));
 	//ft_dlst_add_front(&scene->shapes, ft_dlst_new_node(new_sphere(new_vec3(130, 170, 15), 50, 0x00FFFF)));
 	//ft_dlst_add_front(&scene->shapes, ft_dlst_new_node(new_sphere(new_vec3(350, 350, 50), 100, 0xFFFF00)));
